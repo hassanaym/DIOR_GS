@@ -13,7 +13,7 @@
     </a>
     <ul class="nav submenu">
       <li><a href="product.php">Gestion des produits</a> </li>
-      <li><a href="add_product.php">Ajouter des produits</a> </li>
+      <li><a href="ajouter_produit.php">Ajouter des produits</a> </li>
     </ul>
   </li>
 

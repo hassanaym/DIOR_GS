@@ -1,14 +1,15 @@
 <?php
-// $page_title = 'All clients';
-// require_once('includes/load.php');
-// // Checkin What level user has permission to view this page
-// page_require_level(3);
+require_once('Classes.php');
+
+$cl = new Client();
+$lst = $cl->getAll(); //Array
 ?>
 
 <?php include_once('header.php'); ?>
 <div class="row">
   <div class="col-md-6">
-    <?php //echo display_msg($msg); ?>
+    <?php //echo display_msg($msg); 
+    ?>
   </div>
 </div>
 <div class="row">
@@ -37,26 +38,28 @@
             </tr>
           </thead>
           <tbody>
-            <?php //foreach ($sales as $sale) : ?>
+            <?php foreach ($lst as $c) : ?>
               <tr>
-                <td class="text-center"><?php //echo count_id(); ?></td>
-                <td><?php //echo remove_junk($sale['name']); ?></td>
-                <td class="text-center"><?php //echo (int)$sale['qty']; ?></td>
-                <td class="text-center"><?php //echo remove_junk($sale['price']); ?></td>
-                <td class="text-center"><?php //echo $sale['date']; ?></td>
-                <td class="text-center"><?php //echo $sale['date']; ?></td>
+                <td class="text-center"><?php echo $c->num; ?></td>
+                <td class="text-center"><?php echo $c->nom; ?></td>
+                <td class="text-center"><?php echo $c->prenom; ?></td>
+                <td class="text-center"><?php echo $c->adresse; ?></td>
+                <td class="text-center"><?php echo $c->tel; ?></td>
+                <td class="text-center"><?php echo $c->email; ?></td>
                 <td class="text-center">
                   <div class="btn-group">
-                    <a href="edit_sale.php?id=<?php //echo (int)$sale['id']; ?>" class="btn btn-warning btn-xs" title="Edit" data-toggle="tooltip">
+                    <a href="edit_sale.php?id=<?php //echo (int)$sale['id']; 
+                                              ?>" class="btn btn-warning btn-xs" title="Edit" data-toggle="tooltip">
                       <span class="glyphicon glyphicon-edit"></span>
                     </a>
-                    <a href="delete_sale.php?id=<?php //echo (int)$sale['id']; ?>" class="btn btn-danger btn-xs" title="Delete" data-toggle="tooltip">
+                    <a href="delete_sale.php?id=<?php //echo (int)$sale['id']; 
+                                                ?>" class="btn btn-danger btn-xs" title="Delete" data-toggle="tooltip">
                       <span class="glyphicon glyphicon-trash"></span>
                     </a>
                   </div>
                 </td>
               </tr>
-            <?php //endforeach; ?>
+            <?php endforeach; ?>
           </tbody>
         </table>
       </div>

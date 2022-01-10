@@ -18,11 +18,9 @@
         <div class="col-md-12">
           <form method="post" action="enregistrer_client.php" class="clearfix">
 
-
-
             <div class="form-group">
               <div class="row">
-
+                
                 <div class="col-md-6">
                   <div class="input-group ">
                     <span class="input-group-addon">
