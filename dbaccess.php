@@ -17,7 +17,7 @@ class Dbaccess
         $conn = 'mysql:host=' . $this->_dbHost . ';dbname=' . $this->_dbName . ';port=3308';
 
         try {
-            $this->_dbHandler = new PDO($conn, $this->_dbUser, $this->_dbPass); //Mysqli = sql injection
+            $this->_dbHandler = new PDO($conn, $this->_dbUser, $this->_dbPass); 
         } catch (PDOException $e) {
             $this->_error = $e->getMessage();
             echo $this->_error;

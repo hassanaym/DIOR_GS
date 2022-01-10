@@ -31,10 +31,21 @@
   <li>
     <a href="#" class="submenu-toggle">
       <i class="glyphicon glyphicon-th-list"></i>
+      <span>Fournisseurs</span>
+    </a>
+    <ul class="nav submenu">
+      <li><a href="fournisseurs.php">Gestion des fournisseurs</a> </li>
+      <li><a href="ajouter_fournisseur.php">Ajouter un fournisseur</a> </li>
+    </ul>
+  </li>
+
+  <li>
+    <a href="#" class="submenu-toggle">
+      <i class="glyphicon glyphicon-th-list"></i>
       <span>Commandes</span>
     </a>
     <ul class="nav submenu">
-      <li><a href="commandess.php">Gestion des commandes</a> </li>
+      <li><a href="commandes.php">Gestion des commandes</a> </li>
       <li><a href="ajouter_commande.php">Ajouter une commande</a> </li>
     </ul>
   </li>
@@ -45,8 +56,8 @@
       <span>Approvisionnement</span>
     </a>
     <ul class="nav submenu">
-      <li><a href="sales.php">Gestion des approvisionnements</a> </li>
-      <li><a href="add_sale.php">Ajouter un approvisionnement</a> </li>
+      <li><a href="approvisionnements.php">Gestion des approvisionnements</a> </li>
+      <li><a href="ajouter_approvisionnement.php">Ajouter un approvisionnement</a> </li>
     </ul>
   </li>
 

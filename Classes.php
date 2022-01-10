@@ -276,6 +276,143 @@ class Client
     }
 };
 
+class Fournisseur
+{
+    //Attributs   //Access modifiers   //Droits d'accèes
+    private  $_num;
+    private  $_nom;
+    private  $_adresse;
+    private  $_specialite;
+    private  $_tel;
+    private  $_email;
+    private  $_dba;
+
+    public function __construct()
+    {
+    }
+
+    public function getNum()
+    {
+        return $this->_num;
+    }
+
+    public function setNum($num)
+    {
+        $this->_num = $num;
+    }
+
+    public function getNom()
+    {
+        return $this->_nom;
+    }
+
+    public function setNom($nom)
+    {
+        $this->_nom = $nom;
+    }
+
+
+    public function setSpecialite($specialite)
+    {
+        $this->_specialite = $specialite;
+    }
+
+    public function getSpecialite()
+    {
+        return $this->_specialte;
+    }
+
+
+    public function getAdresse()
+    {
+        return $this->_address;
+    }
+
+    public function setAdresse($adresse)
+    {
+        $this->_adresse = $adresse;
+    }
+
+    public function getTel()
+    {
+        return $this->_tel;
+    }
+
+    public function setTel($tel)
+    {
+        $this->_tel = $tel;
+    }
+
+    public function getEmail()
+    {
+        return $this->_email;
+    }
+
+    public function setEmail($email)
+    {
+        $this->_email = $email;
+    }
+
+
+
+    public function enregistrer()
+    {
+        $_dba = new Dbaccess(); //instanciation
+        $_dba->query("insert into fournisseur values('" . $this->_num . "',
+                                                '" . $this->_nom . "',
+                                                '"  . $this->_adresse . "',
+                                                '"  . $this->_specialite . "',
+                                                '"  . $this->_tel . "',
+                                                '"  . $this->_email . "')");
+        $_dba->execute();
+        return 0;
+    }
+
+    public function delete()
+    {
+        $_dba = new Dbaccess();
+        $_dba->query("delete from client where id='" . $this->_num . "'");
+        $_dba->execute();
+        return 0;
+    }
+
+    public function update()
+    {
+        $_dba = new Dbaccess(); //instanciation
+        $_dba->query("update produit set reference = '" . $this->_reference . "',
+                                                    libelle = '" . $this->_libele . "',
+                                                    quantite_stock = "  . $this->_quantiteStock . ",
+                                                    prix_achat = "  . $this->_prixAchat . ",
+                                                    prix_unitaire = "  . $this->_prixUnitaire . ",
+                                                    prix_vente = "  . $this->_prixVente . "
+                                                    where reference = '"  . $this->_reference . "'");
+        $_dba->execute();
+        return 0;
+    }
+
+    public function getAll()
+    {
+        $_dba = new Dbaccess(); //instanciation
+        $_dba->query("Select * from fournisseur");
+        return $_dba->resultSet();
+    }
+
+    public function getOne()
+    {
+        $_dba = new Dbaccess(); //instanciation
+        $_dba->query("Select * from client where id='" . $this->_num . "'");
+        return $_dba->single();
+    }
+
+
+    public function count()
+    {
+        $_dba = new Dbaccess(); //instanciation
+        $_dba->query("Select count(*) as nbr from client");
+        return $_dba->rowCount();
+    }
+};
+
 class Commande
 {
     //Attributs   //Access modifiers   //Droits d'accèes
@@ -336,7 +473,7 @@ class Commande
         $_dba = new Dbaccess(); //instanciation
         $_dba->query("insert into commande values('" . $this->_num . "',
                                                 '" . $this->_adresseLivraison . "',
-                                                '" . $this->_datecommande . "',
+                                                '" . $this->_dateCommande . "',
                                                 '"  . $this->_idClient . "')");
         $_dba->execute();
         return 0;
@@ -367,7 +504,8 @@ class Commande
     public function getAll()
     {
         $_dba = new Dbaccess(); //instanciation
-        $_dba->query("Select * from commande");
+        $_dba->query("Select c.*, l.nom as nom_client  from commande c 
+        inner join client l on l.num = c.id_client");
         return $_dba->resultSet();
     }
 
@@ -498,10 +636,8 @@ class OrderProduct
 
 class Categorie
 {
-    //Attributs   //Access modifiers   //Droits d'accèes
     private  $_num;
     private  $_categorie;
-
 
     private  $_dba;
 
@@ -529,11 +665,9 @@ class Categorie
         $this->_categorie = $categorie;
     }
 
-
-
     public function enregistrer()
     {
-        $_dba = new Dbaccess(); 
+        $_dba = new Dbaccess();
         $_dba->query("insert into categorie values( '','"  . $this->_categorie . "')");
         $_dba->execute();
         return 0;

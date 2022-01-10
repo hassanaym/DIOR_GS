@@ -91,7 +91,7 @@ $lst = $ctg->getAll();
                 </div>
               </div>
             </div>
-            <button type="submit" name="enregistrer_produit" class="btn btn-danger">Ajouter le produit</button>
+            <button type="submit" name="enregistrer_produit" class="btn btn-danger">Enregistrer</button>
           </form>
         </div>
       </div>
