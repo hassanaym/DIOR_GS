@@ -1,51 +1,7 @@
-<?php
-$page_title = 'Add Product';
-require_once('includes/load.php');
-// Vérifiez quel niveau l'utilisateur a la permission d'afficher cette page
-page_require_level(2);
-$all_categories = find_all('categories');
-$all_photo = find_all('media');
-?>
-<?php
-if (isset($_POST['add_product'])) {
-  $req_fields = array('product-title', 'product-categorie', 'product-quantity', 'buying-price', 'saleing-price');
-  validate_fields($req_fields);
-  if (empty($errors)) {
-    $p_name  = remove_junk($db->escape($_POST['product-title']));
-    $p_cat   = remove_junk($db->escape($_POST['product-categorie']));
-    $p_qty   = remove_junk($db->escape($_POST['product-quantity']));
-    $p_buy   = remove_junk($db->escape($_POST['buying-price']));
-    $p_sale  = remove_junk($db->escape($_POST['saleing-price']));
-    if (is_null($_POST['product-photo']) || $_POST['product-photo'] === "") {
-      $media_id = '0';
-    } else {
-      $media_id = remove_junk($db->escape($_POST['product-photo']));
-    }
-    $date    = make_date();
-    $query  = "INSERT INTO products (";
-    $query .= " name,quantity,buy_price,sale_price,categorie_id,media_id,date";
-    $query .= ") VALUES (";
-    $query .= " '{$p_name}', '{$p_qty}', '{$p_buy}', '{$p_sale}', '{$p_cat}', '{$media_id}', '{$date}'";
-    $query .= ")";
-    $query .= " ON DUPLICATE KEY UPDATE name='{$p_name}'";
-    if ($db->query($query)) {
-      $session->msg('s', "Le produit est ajouté");
-      redirect('add_product.php', false);
-    } else {
-      $session->msg('d', ' Désolé le produit n a pas été ajouter!');
-      redirect('product.php', false);
-    }
-  } else {
-    $session->msg("d", $errors);
-    redirect('add_product.php', false);
-  }
-}
-
-?>
 <?php include_once('header.php'); ?>
 <div class="row">
   <div class="col-md-12">
-    <?php echo display_msg($msg); ?>
+    <?php //echo display_msg($msg); ?>
   </div>
 </div>
 <div class="row">

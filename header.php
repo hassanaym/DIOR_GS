@@ -1,4 +1,5 @@
-<?php $user = current_user(); ?>
+<?php //$user = current_user(); 
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,50 +17,41 @@
 </head>
 
 <body>
-  <?php if ($session->isUserLoggedIn(true)) : ?>
-    <header id="header">
-      <div class="logo pull-left"> DIOR FRAGNANCY </div>
-      <div class="header-content">
-        <div class="header-date pull-left">
-          <strong>Gestion stock</strong>
-        </div>
-        <div class="pull-right clearfix">
-          <ul class="info-menu list-inline list-unstyled">
-            <li class="profile">
-              <a href="#" data-toggle="dropdown" class="toggle" aria-expanded="false">
-                <span><?php echo remove_junk(ucfirst($user['name'])); ?> <i class="caret"></i></span>
-              </a>
-              <ul class="dropdown-menu">
-
-                <li class="last">
-                  <a href="logout.php">
-                    <i class="glyphicon glyphicon-off"></i>
-                    Logout
-                  </a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </div>
+  <?php //if ($session->isUserLoggedIn(true)) : 
+  ?>
+  <header id="header">
+    <div class="logo pull-left"> DIOR FRAGNANCY </div>
+    <div class="header-content">
+      <div class="header-date pull-left">
+        <strong>Gestion stock</strong>
       </div>
-    </header>
-    <div class="sidebar">
-      <?php if ($user['user_level'] === '1') : ?>
-        <!-- admin menu -->
-        <?php include_once('admin_menu.php'); ?>
+      <div class="pull-right clearfix">
+        <ul class="info-menu list-inline list-unstyled">
+          <li class="profile">
+            <a href="#" data-toggle="dropdown" class="toggle" aria-expanded="false">
+              <span><?php //echo remove_junk(ucfirst($user['name'])); ?> <i class="caret"></i></span>
+            </a>
+            <ul class="dropdown-menu">
 
-      <?php elseif ($user['user_level'] === '2') : ?>
-        <!-- Special user -->
-        <?php include_once('special_menu.php'); ?>
-
-      <?php elseif ($user['user_level'] === '3') : ?>
-        <!-- User menu -->
-        <?php include_once('user_menu.php'); ?>
-
-      <?php endif; ?>
-
+              <li class="last">
+                <a href="logout.php">
+                  <i class="glyphicon glyphicon-off"></i>
+                  Logout
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
     </div>
-  <?php endif; ?>
+  </header>
+  <div class="sidebar">
+
+    <?php include_once('admin_menu.php'); ?>
+
+  </div>
+  <?php //endif; 
+  ?>
 
   <div class="page">
     <div class="container-fluid">

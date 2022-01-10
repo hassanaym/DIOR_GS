@@ -24,7 +24,7 @@
     </a>
     <ul class="nav submenu">
       <li><a href="clients.php">Gestion des clients</a> </li>
-      <li><a href="add_client.php">Ajouter un client</a> </li>
+      <li><a href="ajouter_client.php">Ajouter un client</a> </li>
     </ul>
   </li>
 
