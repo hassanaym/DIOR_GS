@@ -32,10 +32,10 @@ body{
 }
 
 .bg-green{
-  background-color: #A3C86D;
+  background-color: #C73866;
 }
 .bg-blue{
-  background-color: #7ACBEE;
+  background-color: #FDD761;
 }
 .bg-yellow{
   background-color: #FDD761;
@@ -44,8 +44,8 @@ body{
   background-color: #FF7857;
 }
 .panel-default >.panel-heading{
-  background-color: #f5f5f5;
-  border-bottom: 2px solid #3498DB;
+  background-color: #FFDCA2;
+  border-bottom: 2px solid #FF7857;
   font-size: 15px;
   text-transform: uppercase;
   letter-spacing: .5px;
@@ -97,7 +97,7 @@ body{
     letter-spacing: 1px;
     display: inline-block;
     width: 250px;
-    background-color: #79616F;
+    background-color: #FE676E;
 }.header-date{
   color: #9b9b9b;
   margin-left: 20px;
@@ -157,7 +157,7 @@ body{
   padding: 65px 0 0;
   height: 100%;
   width: 250px;
-  background: #7E9680;
+  background: #C73866;
   border-right: 1px solid #ddd;
   text-align: center;
 }.sidebar ul li:hover,.submenu ul li:hover{
@@ -170,7 +170,7 @@ body{
 }.sidebar ul li {
   display: block;
 }.sidebar ul li:hover,ul.submenu{
-  background-color:#79616F;
+  background-color:#FE676E;
 }.sidebar ul li a:hover {
   color: white;
 }.sidebar ul li a,ul.submenu li a {
@@ -244,7 +244,7 @@ table tfoot tr td:first-child{
   transition: all .15s ease-out;
 }.form-control:focus{
   background: #f8f8f8;
-  border-color: #3498DB;
+  border-color: #FD8F52;
   outline: 0;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
@@ -257,12 +257,12 @@ table tfoot tr td:first-child{
    transition: all 300ms ease-in-out;
 }.btn-primary {
     color: #fff;
-    background-color: #51aded;
-    border-color: #3d8fd8
+    background-color: #FD8F52;
+    border-color: #C73866
 }.btn-primary:hover, .btn-primary:focus, .btn-primary.focus, .btn-primary:active, .btn-primary.active{
     color: #fff;
-    background-color: #3175b8;
-    border-color: #3d8fd8
+    background-color: #FFBD71;
+    border-color: #FD8F52
 }.btn-success{
    background-color:#2ecc71
 }.btn-success:hover, .btn-success:focus, .btn-success.focus, .btn-success:active, .btn-success.active{
