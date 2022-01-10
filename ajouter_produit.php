@@ -1,3 +1,9 @@
+<?php
+require_once('Classes.php');
+$ctg = new Categorie();
+$lst = $ctg->getAll();
+?>
+
 <?php include_once('header.php'); ?>
 <div class="row">
   <div class="col-md-12">
@@ -45,9 +51,9 @@
                 <div class="col-md-6">
                   <select class="form-control" name="categorie">
                     <option value="">Sélectionner la catégorie du produit</option>
-                    <?php foreach ($all_categories as $cat) : ?>
-                      <option value="<?php echo (int)$cat['id'] ?>">
-                        <?php echo $cat['name'] ?></option>
+                    <?php foreach ($lst as $c) : ?>
+                      <option value="<?php echo (int)$c->num; ?>">
+                        <?php echo $c->categorie; ?></option>
                     <?php endforeach; ?>
                   </select>
                 </div>

@@ -12,7 +12,7 @@
       <span>Produits</span>
     </a>
     <ul class="nav submenu">
-      <li><a href="product.php">Gestion des produits</a> </li>
+      <li><a href="produits.php">Gestion des produits</a> </li>
       <li><a href="ajouter_produit.php">Ajouter des produits</a> </li>
     </ul>
   </li>
@@ -34,8 +34,8 @@
       <span>Commandes</span>
     </a>
     <ul class="nav submenu">
-      <li><a href="sales.php">Gestion des commandes</a> </li>
-      <li><a href="add_sale.php">Ajouter une commande</a> </li>
+      <li><a href="commandess.php">Gestion des commandes</a> </li>
+      <li><a href="ajouter_commande.php">Ajouter une commande</a> </li>
     </ul>
   </li>
 
