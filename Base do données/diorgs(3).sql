@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3308
--- Généré le :  mar. 11 jan. 2022 à 20:49
+-- Généré le :  mar. 11 jan. 2022 à 22:01
 -- Version du serveur :  8.0.18
 -- Version de PHP :  7.3.12
 
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `approvisionnement` (
   `num` int(11) NOT NULL,
   `date_app` date NOT NULL,
   `id_fournisseur` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `approvisionnement`
@@ -54,14 +54,14 @@ CREATE TABLE IF NOT EXISTS `categorie` (
   `num` int(11) NOT NULL AUTO_INCREMENT,
   `categorie` varchar(60) NOT NULL,
   PRIMARY KEY (`num`)
-) ENGINE=MyISAM AUTO_INCREMENT=1008 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=1009 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `categorie`
 --
 
 INSERT INTO `categorie` (`num`, `categorie`) VALUES
-(1007, 'jqsgjd'),
+(1008, 'Parfum2'),
 (1006, 'Eau de toillete'),
 (1005, 'Parfum');
 
@@ -79,7 +79,7 @@ CREATE TABLE IF NOT EXISTS `client` (
   `adresse` varchar(100) NOT NULL,
   `tel` varchar(16) NOT NULL,
   `email` varchar(40) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `client`
@@ -101,7 +101,7 @@ CREATE TABLE IF NOT EXISTS `commande` (
   `date_commande` date NOT NULL,
   `id_client` int(11) NOT NULL,
   PRIMARY KEY (`num`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `commande`
@@ -123,7 +123,7 @@ CREATE TABLE IF NOT EXISTS `commande_produit` (
   `ref` int(11) NOT NULL,
   `quantite` int(11) NOT NULL,
   PRIMARY KEY (`num`,`ref`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `commande_produit`
@@ -149,7 +149,7 @@ CREATE TABLE IF NOT EXISTS `fournisseur` (
   `tel` varchar(18) NOT NULL,
   `email` varchar(30) NOT NULL,
   PRIMARY KEY (`num`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `fournisseur`
@@ -167,13 +167,13 @@ INSERT INTO `fournisseur` (`num`, `nom`, `adresse`, `specialite`, `tel`, `email`
 
 DROP TABLE IF EXISTS `produit`;
 CREATE TABLE IF NOT EXISTS `produit` (
-  `reference` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `reference` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `description` varchar(100) NOT NULL,
   `quantite_stock` int(11) NOT NULL,
   `prix_achat` float NOT NULL,
   `prix_vente` float NOT NULL,
   `categorie` int(50) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `produit`
