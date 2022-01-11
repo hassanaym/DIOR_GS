@@ -1,24 +1,20 @@
 <?php
-ob_start();
-require_once('includes/load.php');
-if ($session->isUserLoggedIn(true)) {
-  redirect('home.php', false);
-}
+
+
 ?>
 <?php include_once('header.php'); ?>
 <div class="login-page">
   <div class="text-center">
-    <h1>Welcome</h1>
-    <p>Sign in to start your session</p>
+    <h1>Dior GS</h1>
+    <p>CONNEXION</p>
   </div>
-  <?php echo display_msg($msg); ?>
   <form method="post" action="auth.php" class="clearfix">
     <div class="form-group">
-      <label for="username" class="control-label">Username</label>
+      <label for="username" class="control-label">Nom utilisateur</label>
       <input type="name" class="form-control" name="username" placeholder="Username">
     </div>
     <div class="form-group">
-      <label for="Password" class="control-label">Password</label>
+      <label for="Password" class="control-label">Mot de passe</label>
       <input type="password" name="password" class="form-control" placeholder="password">
     </div>
     <div class="form-group">

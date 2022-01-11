@@ -43,12 +43,8 @@ $lst = $fr->getAll();
                 <td class="text-center"><?php echo $c->email; ?></td>
                 <td class="text-center">
                   <div class="btn-group">
-                    <a href="edit_sale.php?id=<?php //echo (int)$sale['id']; 
-                                              ?>" class="btn btn-warning btn-xs" title="Edit" data-toggle="tooltip">
-                      <span class="glyphicon glyphicon-edit"></span>
-                    </a>
-                    <a href="delete_sale.php?id=<?php //echo (int)$sale['id']; 
-                                                ?>" class="btn btn-danger btn-xs" title="Delete" data-toggle="tooltip">
+                    <a href="supprimer_fournisseur.php?num=<?php echo $c->num;
+                                                            ?>" class="btn btn-danger btn-xs" title="Delete" data-toggle="tooltip">
                       <span class="glyphicon glyphicon-trash"></span>
                     </a>
                   </div>

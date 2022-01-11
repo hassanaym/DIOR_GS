@@ -21,7 +21,7 @@ $lst = $cl->getAll(); //Array
           <span>Tous les clients</span>
         </strong>
         <div class="pull-right">
-          <a href="add_sale.php" class="btn btn-primary">Ajouter</a>
+          <a href="ajouter_client.php" class="btn btn-primary">Ajouter</a>
         </div>
       </div>
       <div class="panel-body">
@@ -48,9 +48,9 @@ $lst = $cl->getAll(); //Array
                 <td class="text-center"><?php echo $c->email; ?></td>
                 <td class="text-center">
                   <div class="btn-group">
-                   
+
                     <a href="supprimer_client.php?num=<?php echo $c->num;
-                                                ?>" class="btn btn-danger btn-xs" title="Delete" data-toggle="tooltip">
+                                                      ?>" class="btn btn-danger btn-xs" title="Delete" data-toggle="tooltip">
                       <span class="glyphicon glyphicon-trash"></span>
                     </a>
                   </div>

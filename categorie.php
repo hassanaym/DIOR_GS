@@ -55,12 +55,9 @@ $lst = $ctg->getAll();
                 <td><?php echo $c->categorie; ?></td>
                 <td class="text-center">
                   <div class="btn-group">
-                    <a href="edit_categorie.php?id=<?php //echo (int)$cat['id']; 
-                                                    ?>" class="btn btn-xs btn-warning" data-toggle="tooltip" title="Edit">
-                      <span class="glyphicon glyphicon-edit"></span>
-                    </a>
-                    <a href="delete_categorie.php?id=<?php //echo (int)$cat['id']; 
-                                                      ?>" class="btn btn-xs btn-danger" data-toggle="tooltip" title="Remove">
+
+                    <a href="supprimer_categorie.php?num=<?php echo $c->num;
+                                                          ?>" class="btn btn-xs btn-danger" data-toggle="tooltip" title="Remove">
                       <span class="glyphicon glyphicon-trash"></span>
                     </a>
                   </div>

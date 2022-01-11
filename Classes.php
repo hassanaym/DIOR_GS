@@ -364,10 +364,10 @@ class Fournisseur
         return 0;
     }
 
-    public function delete()
+    public function supprimer()
     {
         $_dba = new Dbaccess();
-        $_dba->query("delete from client where id='" . $this->_num . "'");
+        $_dba->query("delete from fournisseur where num='" . $this->_num . "'");
         $_dba->execute();
         return 0;
     }
@@ -732,12 +732,7 @@ class Categorie
 {
     private  $_num;
     private  $_categorie;
-
     private  $_dba;
-
-    public function __construct()
-    {
-    }
 
     public function getNum()
     {
@@ -767,24 +762,10 @@ class Categorie
         return 0;
     }
 
-    public function delete()
+    public function supprimer()
     {
         $_dba = new Dbaccess();
-        $_dba->query("delete from client where id='" . $this->_id . "'");
-        $_dba->execute();
-        return 0;
-    }
-
-    public function update()
-    {
-        $_dba = new Dbaccess(); //instanciation
-        $_dba->query("update produit set reference = '" . $this->_reference . "',
-                                                    libelle = '" . $this->_libele . "',
-                                                    quantite_stock = "  . $this->_quantiteStock . ",
-                                                    prix_achat = "  . $this->_prixAchat . ",
-                                                    prix_unitaire = "  . $this->_prixUnitaire . ",
-                                                    prix_vente = "  . $this->_prixVente . "
-                                                    where reference = '"  . $this->_reference . "'");
+        $_dba->query("delete from categorie where num='" . $this->_num . "'");
         $_dba->execute();
         return 0;
     }
@@ -794,21 +775,6 @@ class Categorie
         $_dba = new Dbaccess();
         $_dba->query("Select * from categorie");
         return $_dba->resultSet();
-    }
-
-    public function getOne()
-    {
-        $_dba = new Dbaccess(); //instanciation
-        $_dba->query("Select * from client where id='" . $this->_id . "'");
-        return $_dba->single();
-    }
-
-
-    public function count()
-    {
-        $_dba = new Dbaccess(); //instanciation
-        $_dba->query("Select count(*) as nbr from client");
-        return $_dba->rowCount();
     }
 };
 
