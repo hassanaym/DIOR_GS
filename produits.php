@@ -43,11 +43,11 @@ $lst = $prd->getAll();
                 <td class="text-center"> <?php echo $p->prix_vente; ?></td>
                 <td class="text-center">
                   <div class="btn-group">
-                    <a href="edit_product.php?id=<?php //echo (int)$product['id']; 
+                    <!-- <a href="edit_product.php?id=<?php //echo (int)$product['id']; 
                                                   ?>" class="btn btn-info btn-xs" title="Edit" data-toggle="tooltip">
                       <span class="glyphicon glyphicon-edit"></span>
-                    </a>
-                    <a href="delete_product.php?id=<?php //echo (int)$product['id']; 
+                    </a> -->
+                    <a href="supprimer_produit.php?ref=<?php echo (int)$p->reference; 
                                                     ?>" class="btn btn-danger btn-xs" title="Delete" data-toggle="tooltip">
                       <span class="glyphicon glyphicon-trash"></span>
                     </a>

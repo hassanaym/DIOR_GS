@@ -1,7 +1,7 @@
 <?php
 require_once('Classes.php');
-$clt = new Client();
-$lst = $clt->getAll();
+$fr = new Fournisseur();
+$lst = $fr->getAll();
 ?>
 
 <?php include_once('header.php'); ?>
@@ -12,12 +12,12 @@ $lst = $clt->getAll();
       <div class="panel-heading">
         <strong>
           <span class="glyphicon glyphicon-th"></span>
-          <span>Ajouter une nouvelle commande</span>
+          <span>Ajouter un nouveau approvisionnement</span>
         </strong>
       </div>
       <div class="panel-body">
         <div class="col-md-12">
-          <form method="post" action="enregistrer_commande.php" class="clearfix">
+          <form method="post" action="enregistrer_approvisionnement.php" class="clearfix">
 
             <div class="form-group">
               <div class="row">
@@ -26,7 +26,7 @@ $lst = $clt->getAll();
                     <span class="input-group-addon">
                       <i class="glyphicon glyphicon-th-large"></i>
                     </span>
-                    <input type="text" class="form-control" name="numero" placeholder="Numéro de la commande">
+                    <input type="text" class="form-control" name="numero" placeholder="Numéro de l'approvisionnement">
                   </div>
                 </div>
 
@@ -41,7 +41,7 @@ $lst = $clt->getAll();
                     <span class="input-group-addon">
                       <i class="glyphicon glyphicon-th-large"></i>
                     </span>
-                    <input type="date" value="<?php echo date('Y-m-d');?>" class="form-control" name="date_commande" placeholder="Date de la commande">
+                    <input type="date" value="<?php echo date('Y-m-d'); ?>" class="form-control" name="date_app" placeholder="Date de l'approvisionnement'">
                   </div>
                 </div>
 
@@ -54,11 +54,11 @@ $lst = $clt->getAll();
             <div class="form-group">
               <div class="row">
                 <div class="col-md-6">
-                  <select class="form-control" name="client">
-                    <option value="">Sélectionner le client</option>
-                    <?php foreach ($lst as $c) : ?>
-                      <option value="<?php echo(int)$c->num; ?>">
-                        <?php echo $c->nom; ?></option>
+                  <select class="form-control" name="fournisseur">
+                    <option value="">Sélectionner le fournisseur</option>
+                    <?php foreach ($lst as $f) : ?>
+                      <option value="<?php echo (int)$f->num; ?>">
+                        <?php echo $f->nom; ?></option>
                     <?php endforeach; ?>
                   </select>
                 </div>
@@ -66,21 +66,7 @@ $lst = $clt->getAll();
               </div>
             </div>
 
-            <div class="form-group">
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="input-group">
-                    <span class="input-group-addon">
-                      <i class="glyphicon glyphicon-th-large"></i>
-                    </span>
-                    <input type="text" class="form-control" name="adresse_livraison" placeholder="Adresse de livraison">
-                  </div>
-                </div>
-
-              </div>
-            </div>
-
-            <button type="submit" name="enregistrer_commande" class="btn btn-danger">Enregistrer</button>
+            <button type="submit" name="enregistrer_approvisionnement" class="btn btn-success">Enregistrer</button>
           </form>
         </div>
       </div>

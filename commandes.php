@@ -40,12 +40,10 @@ $lst = $cmd->getAll();
 
                 <td class="text-center">
                   <div class="btn-group">
-                    <a href="edit_sale.php?id=<?php //echo (int)$sale['id']; 
-                                              ?>" class="btn btn-warning btn-xs" title="Edit" data-toggle="tooltip">
+                    <a href="commande_produit.php?num=<?php echo $c->num; ?>" class="btn btn-warning btn-xs" title="Edit" data-toggle="tooltip">
                       <span class="glyphicon glyphicon-edit"></span>
                     </a>
-                    <a href="delete_sale.php?id=<?php //echo (int)$sale['id']; 
-                                                ?>" class="btn btn-danger btn-xs" title="Delete" data-toggle="tooltip">
+                    <a href="supprimer_commande.php?num=<?php echo $c->num; ?>" class="btn btn-danger btn-xs" title="Delete" data-toggle="tooltip">
                       <span class="glyphicon glyphicon-trash"></span>
                     </a>
                   </div>

@@ -3,23 +3,19 @@ require_once('dbaccess.php');
 
 class Produit
 {
-    //Attributs   //Access modifiers   //Droits d'accèes
     private  $_reference;
     private  $_description;
     private  $_quantiteStock;
     private  $_prixAchat;
     private  $_prixVente;
     private $_categorie;
-    private  $_dba; //Connection à la base de données
+    private  $_dba;
 
-    //Constructeur   //Surcharge = Overloading
+
     public function __construct()
-    {   //implicite explicite
-
+    {
     }
 
-    //Methodes   //Interfaces
-    //Setters and getters
     public function getReference()
     {
         return $this->_reference;
@@ -93,7 +89,7 @@ class Produit
         return 0;
     }
 
-    public function delete()
+    public function supprimer()
     {
         $_dba = new Dbaccess();
         $_dba->query("delete from produit where reference='" . $this->_reference . "'");
@@ -231,10 +227,10 @@ class Client
         return 0;
     }
 
-    public function delete()
+    public function supprimer()
     {
         $_dba = new Dbaccess();
-        $_dba->query("delete from client where id='" . $this->_num . "'");
+        $_dba->query("delete from client where num='" . $this->_num . "'");
         $_dba->execute();
         return 0;
     }
@@ -415,7 +411,6 @@ class Fournisseur
 
 class Commande
 {
-    //Attributs   //Access modifiers   //Droits d'accèes
     private  $_num;
     private  $_adresseLivraison;
     private  $_dateCommande;
@@ -470,11 +465,109 @@ class Commande
 
     public function enregistrer()
     {
-        $_dba = new Dbaccess(); //instanciation
+        $_dba = new Dbaccess();
         $_dba->query("insert into commande values('" . $this->_num . "',
                                                 '" . $this->_adresseLivraison . "',
                                                 '" . $this->_dateCommande . "',
                                                 '"  . $this->_idClient . "')");
+        $_dba->execute();
+        return 0;
+    }
+
+    public function supprimer()
+    {
+        $_dba = new Dbaccess();
+        $_dba->query("delete from commande where num='" . $this->_num . "'");
+        $_dba->execute();
+        return 0;
+    }
+
+    public function update()
+    {
+        $_dba = new Dbaccess(); //instanciation
+        $_dba->query("update produit set reference = '" . $this->_reference . "',
+                                                    libelle = '" . $this->_libele . "',
+                                                    quantite_stock = "  . $this->_quantiteStock . ",
+                                                    prix_achat = "  . $this->_prixAchat . ",
+                                                    prix_unitaire = "  . $this->_prixUnitaire . ",
+                                                    prix_vente = "  . $this->_prixVente . "
+                                                    where reference = '"  . $this->_reference . "'");
+        $_dba->execute();
+        return 0;
+    }
+
+    public function getAll()
+    {
+        $_dba = new Dbaccess(); //instanciation
+        $_dba->query("Select c.*, l.nom as nom_client  from commande c 
+        inner join client l on l.num = c.id_client");
+        return $_dba->resultSet();
+    }
+
+    public function trouverCommande()
+    {
+        $_dba = new Dbaccess();
+        $_dba->query("Select * from commande where num='" . $this->_num . "'");
+        return $_dba->single();
+    }
+
+
+    public function count()
+    {
+        $_dba = new Dbaccess(); //instanciation
+        $_dba->query("Select count(*) as nbr from client");
+        return $_dba->rowCount();
+    }
+};
+
+class Approvisionnement
+{
+    private  $_num;
+    private  $_dateApp;
+    private  $_idFournisseur;
+
+    private  $_dba;
+
+    public function __construct()
+    {
+    }
+
+    public function getNum()
+    {
+        return $this->_num;
+    }
+
+    public function setNum($num)
+    {
+        $this->_num = $num;
+    }
+
+    public function getDateApp()
+    {
+        return $this->_dateApp;
+    }
+
+    public function setDateApp($dateApp)
+    {
+        $this->_dateApp = $dateApp;
+    }
+
+    public function getIdFournisseur()
+    {
+        return $this->_idFournisseur;
+    }
+
+    public function setIdFournisseur($idFournisseur)
+    {
+        $this->_idFournisseur = $idFournisseur;
+    }
+
+    public function enregistrer()
+    {
+        $_dba = new Dbaccess(); //instanciation
+        $_dba->query("insert into approvisionnement values('" . $this->_num . "',
+                                                '" . $this->_dateApp . "',
+                                                '"  . $this->_idFournisseur . "')");
         $_dba->execute();
         return 0;
     }
@@ -504,8 +597,8 @@ class Commande
     public function getAll()
     {
         $_dba = new Dbaccess(); //instanciation
-        $_dba->query("Select c.*, l.nom as nom_client  from commande c 
-        inner join client l on l.num = c.id_client");
+        $_dba->query("Select a.*, l.nom as nom_fournisseur  from approvisionnement a
+        inner join fournisseur l on l.num = a.id_fournisseur");
         return $_dba->resultSet();
     }
 
@@ -524,6 +617,7 @@ class Commande
         return $_dba->rowCount();
     }
 };
+
 
 class OrderProduct
 {
@@ -699,6 +793,105 @@ class Categorie
     {
         $_dba = new Dbaccess();
         $_dba->query("Select * from categorie");
+        return $_dba->resultSet();
+    }
+
+    public function getOne()
+    {
+        $_dba = new Dbaccess(); //instanciation
+        $_dba->query("Select * from client where id='" . $this->_id . "'");
+        return $_dba->single();
+    }
+
+
+    public function count()
+    {
+        $_dba = new Dbaccess(); //instanciation
+        $_dba->query("Select count(*) as nbr from client");
+        return $_dba->rowCount();
+    }
+};
+
+class CommandeProduit
+{
+    private  $_num;
+    private  $_ref;
+    private  $_quantite;
+
+    private  $_dba;
+
+    public function __construct()
+    {
+    }
+
+    public function getNum()
+    {
+        return $this->_num;
+    }
+
+    public function setNum($num)
+    {
+        $this->_num = $num;
+    }
+
+    public function getRef()
+    {
+        return $this->_ref;
+    }
+
+    public function setRef($ref)
+    {
+        $this->_ref = $ref;
+    }
+
+    public function getQuantite()
+    {
+        return $this->_quantite;
+    }
+
+    public function setQuantite($quantite)
+    {
+        $this->_quantite = $quantite;
+    }
+
+    public function enregistrer()
+    {
+        $_dba = new Dbaccess();
+        $_dba->query("insert into commande_produit values( '"  . $this->_num . "',
+                                                            '"  . $this->_ref . "',
+                                                            '"  . $this->_quantite . "')");
+        $_dba->execute();
+        return 0;
+    }
+
+    public function delete()
+    {
+        $_dba = new Dbaccess();
+        $_dba->query("delete from client where id='" . $this->_id . "'");
+        $_dba->execute();
+        return 0;
+    }
+
+    public function update()
+    {
+        $_dba = new Dbaccess(); //instanciation
+        $_dba->query("update produit set reference = '" . $this->_reference . "',
+                                                    libelle = '" . $this->_libele . "',
+                                                    quantite_stock = "  . $this->_quantiteStock . ",
+                                                    prix_achat = "  . $this->_prixAchat . ",
+                                                    prix_unitaire = "  . $this->_prixUnitaire . ",
+                                                    prix_vente = "  . $this->_prixVente . "
+                                                    where reference = '"  . $this->_reference . "'");
+        $_dba->execute();
+        return 0;
+    }
+
+    public function getAll()
+    {
+        $_dba = new Dbaccess();
+        $_dba->query("Select * from commande_produit cp
+                    inner join commande c on cp.num=c.num
+                    inner join produit p on p.reference=cp.ref");
         return $_dba->resultSet();
     }
 

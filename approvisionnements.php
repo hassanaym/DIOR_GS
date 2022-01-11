@@ -1,50 +1,50 @@
 <?php
 require_once('Classes.php');
 
-$prd = new Produit();
-$lst = $prd->getAll();
+$app = new Approvisionnement();
+$lst = $app->getAll();
+
 ?>
 
 <?php include_once('header.php'); ?>
-<div class="row">
 
+<div class="row">
   <div class="col-md-12">
     <div class="panel panel-default">
       <div class="panel-heading clearfix">
+        <strong>
+          <span class="glyphicon glyphicon-th"></span>
+          <span>Tous les approvisionnements</span>
+        </strong>
         <div class="pull-right">
-          <a href="ajouter_produit.php" class="btn btn-primary">Ajouter Nouveau</a>
+          <a href="ajouter_approvisionnement.php" class="btn btn-primary">Ajouter</a>
         </div>
       </div>
       <div class="panel-body">
-        <table class="table table-bordered">
+        <table class="table table-bordered table-striped">
           <thead>
             <tr>
-              <th class="text-center" style="width: 10%;">Réf</th>
-              <th class="text-center" style="width: 15%;"> Description </th>
-              <th class="text-center" style="width: 15%;"> Catégorie </th>
-              <th class="text-center" style="width: 15%;"> En stock </th>
-              <th class="text-center" style="width: 10%;"> Prix achat </th>
-              <th class="text-center" style="width: 10%;"> Prix vente </th>
-              <th class="text-center" style="width: 10%;"> Actions </th>
+              <th class="text-center" style="width: 20px;">Num</th>
+              <th class="text-center" style="width: 18%;"> Date</th>
+              <th class="text-center" style="width: 25%;"> Fournisseur</th>
+              <th class="text-center" style="width: 18%;"> Actions </th>
             </tr>
           </thead>
           <tbody>
-            <?php foreach ($lst as $p) : ?>
+            <?php foreach ($lst as $c) : ?>
               <tr>
-                <td class="text-center"><?php echo $p->reference; ?></td>
-                <td class="text-center"> <?php echo $p->description; ?></td>
-                <td class="text-center"> <?php echo $p->nom_categorie; ?></td>
-                <td class="text-center"> <?php echo $p->quantite_stock; ?></td>
-                <td class="text-center"> <?php echo $p->prix_achat; ?></td>
-                <td class="text-center"> <?php echo $p->prix_vente; ?></td>
+                <td class="text-center"><?php echo $c->num; ?></td>
+                <td class="text-center"><?php echo $c->date_app; ?></td>
+                <td class="text-center"><?php echo $c->nom_fournisseur; ?></td>
+
                 <td class="text-center">
                   <div class="btn-group">
-                    <a href="edit_product.php?id=<?php //echo (int)$product['id']; 
-                                                  ?>" class="btn btn-info btn-xs" title="Edit" data-toggle="tooltip">
+                    <a href="edit_sale.php?id=<?php //echo (int)$sale['id']; 
+                                              ?>" class="btn btn-warning btn-xs" title="Edit" data-toggle="tooltip">
                       <span class="glyphicon glyphicon-edit"></span>
                     </a>
-                    <a href="delete_product.php?id=<?php //echo (int)$product['id']; 
-                                                    ?>" class="btn btn-danger btn-xs" title="Delete" data-toggle="tooltip">
+                    <a href="delete_sale.php?id=<?php //echo (int)$sale['id']; 
+                                                ?>" class="btn btn-danger btn-xs" title="Delete" data-toggle="tooltip">
                       <span class="glyphicon glyphicon-trash"></span>
                     </a>
                   </div>
