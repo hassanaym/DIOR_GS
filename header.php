@@ -13,10 +13,9 @@
 </head>
 
 <body>
-  <?php //if ($session->isUserLoggedIn(true)) : 
-  ?>
+
   <header id="header">
-    <div class="logo pull-left"> DIOR FRAGNANCY </div>
+    <div class="logo pull-left"> DIOR GS </div>
     <div class="header-content">
       <div class="header-date pull-left">
         <strong>Gestion stock</strong>
@@ -25,7 +24,7 @@
         <ul class="info-menu list-inline list-unstyled">
           <li class="profile">
             <a href="#" data-toggle="dropdown" class="toggle" aria-expanded="false">
-              <span><?php //echo remove_junk(ucfirst($user['name'])); 
+              <span><?php
                     ?> <i class="caret"></i></span>
             </a>
             <ul class="dropdown-menu">
@@ -47,8 +46,7 @@
     <?php include_once('admin_menu.php'); ?>
 
   </div>
-  <?php //endif; 
-  ?>
+
 
   <div class="page">
     <div class="container-fluid">

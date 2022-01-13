@@ -3,12 +3,12 @@ require_once('Classes.php');
 $prd = new Produit();
 $lstp = $prd->getAll();
 
-$cmdprd = new CommandeProduit();
-$lst = $cmdprd->getAll();
+$cmdapp = new ApprovisionnementProduit();
+$lst = $cmdapp->getAll();
 
-$cmd = new Commande();
-$cmd->setNum($_GET['num']);
-$cmd = $cmd->trouverCommande();
+$app = new Approvisionnement();
+$app->setNum($_GET['num']);
+$app = $app->trouverApprovisionnement();
 ?>
 
 
@@ -16,15 +16,15 @@ $cmd = $cmd->trouverCommande();
 
 <div class="row" style="margin-bottom:15px">
   <div class="col-md-4">
-    <input type="text" class="form-control" name="num_commande" value="Commande numéro : <?php echo $cmd->num ?>" disabled>
+    <input type="text" class="form-control" name="num_commande" value="Approvisionnement numéro : <?php echo $app->num ?>" disabled>
   </div>
 
   <div class="col-md-4">
-    <input type="text" class="form-control" name="num_commande" value="Date commande : <?php echo $cmd->date_commande ?>" disabled>
+    <input type="text" class="form-control" name="num_commande" value="Date approvisionnement : <?php echo $app->date_app ?>" disabled>
   </div>
 
   <div class="col-md-4">
-    <input type="text" class="form-control" name="num_commande" value="Client : <?php echo $cmd->id_client ?>" disabled>
+    <input type="text" class="form-control" name="num_commande" value="Fournisseur : <?php echo $app->id_fournisseur ?>" disabled>
   </div>
 </div>
 
@@ -38,7 +38,7 @@ $cmd = $cmd->trouverCommande();
         </strong>
       </div>
       <div class="panel-body">
-        <form method="post" action="enregistrer_commande_produit.php?num=<?php echo $cmd->num ?>">
+        <form method="post" action="enregistrer_approvisionnement_produit.php?num=<?php echo $app->num ?>">
 
           <div class="form-group">
             <div class="row">
@@ -58,7 +58,7 @@ $cmd = $cmd->trouverCommande();
           <div class="form-group">
             <input type="number" class="form-control" name="quantite" placeholder="Quantité">
           </div>
-          <button type="submit" name="enregistrer_commande_produit" class="btn btn-primary">Enregistrer</button>
+          <button type="submit" name="enregistrer_approvisionnement_produit" class="btn btn-primary">Enregistrer</button>
         </form>
       </div>
     </div>
@@ -68,7 +68,7 @@ $cmd = $cmd->trouverCommande();
       <div class="panel-heading">
         <strong>
           <span class="glyphicon glyphicon-th"></span>
-          <span>Les produits de la commande</span>
+          <span>Les produits de l'approvisionnement</span>
         </strong>
       </div>
       <div class="panel-body">
@@ -91,8 +91,8 @@ $cmd = $cmd->trouverCommande();
                 <td class="text-center">
                   <div class="btn-group">
 
-                    <a href="supprimer_commande_produit.php?num=<?php echo $cmd->num;
-                                                                ?>&ref=<?php echo $c->ref
+                    <a href="supprimer_approvisionnement_produit.php?num=<?php echo $app->num;
+                                                                        ?>&ref=<?php echo $c->ref
                                                               ?>" class="btn btn-xs btn-danger" data-toggle="tooltip" title="Remove">
                       <span class="glyphicon glyphicon-trash"></span>
                     </a>

@@ -24,8 +24,8 @@ $lst = $app->getAll();
         <table class="table table-bordered table-striped">
           <thead>
             <tr>
-              <th class="text-center" style="width: 20px;">Num</th>
-              <th class="text-center" style="width: 18%;"> Date</th>
+              <th class="text-center" style="width: 15%;">Num</th>
+              <th class="text-center" style="width: 23%;"> Date</th>
               <th class="text-center" style="width: 25%;"> Fournisseur</th>
               <th class="text-center" style="width: 18%;"> Actions </th>
             </tr>
@@ -39,11 +39,11 @@ $lst = $app->getAll();
 
                 <td class="text-center">
                   <div class="btn-group">
-                    <a href="edit_sale.php?id=<?php //echo (int)$sale['id']; 
+                    <a href="approvisionnement_produit.php?num=<?php echo $c->num; 
                                               ?>" class="btn btn-warning btn-xs" title="Edit" data-toggle="tooltip">
                       <span class="glyphicon glyphicon-edit"></span>
                     </a>
-                    <a href="delete_sale.php?id=<?php //echo (int)$sale['id']; 
+                    <a href="supprimer_approvisionnement.php?num=<?php echo $c->num;
                                                 ?>" class="btn btn-danger btn-xs" title="Delete" data-toggle="tooltip">
                       <span class="glyphicon glyphicon-trash"></span>
                     </a>

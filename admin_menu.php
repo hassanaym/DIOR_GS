@@ -61,15 +61,5 @@
     </ul>
   </li>
 
-  <!-- <li>
-    <a href="#" class="submenu-toggle">
-      <i class="glyphicon glyphicon-signal"></i>
-      <span>Rapport des ventes</span>
-    </a>
-    <ul class="nav submenu">
-      <li><a href="sales_report.php">Ventes par dates</a></li>
-      <li><a href="monthly_sales.php">Ventes mensuelles</a></li>
-      <li><a href="daily_sales.php">ventes quotidiennes</a> </li>
-    </ul>
-  </li> -->
+
 </ul>

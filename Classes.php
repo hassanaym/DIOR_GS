@@ -97,16 +97,11 @@ class Produit
         return 0;
     }
 
-    public function update()
+    public function augmenterStock()
     {
-        $_dba = new Dbaccess(); //instanciation
-        $_dba->query("update produit set reference = '" . $this->_reference . "',
-                                                    libelle = '" . $this->_libele . "',
-                                                    quantite_stock = "  . $this->_quantiteStock . ",
-                                                    prix_achat = "  . $this->_prixAchat . ",
-                                                    prix_unitaire = "  . $this->_prixUnitaire . ",
-                                                    prix_vente = "  . $this->_prixVente . "
-                                                    where reference = '"  . $this->_reference . "'");
+        $_dba = new Dbaccess($qte); //instanciation
+        $_dba->query("update produit set quantite_stock = quantite_stock + " . $qte . "
+                                    where reference = '"  . $this->_reference . "'");
         $_dba->execute();
         return 0;
     }
@@ -137,7 +132,7 @@ class Produit
 
 class Client
 {
-    //Attributs   //Access modifiers   //Droits d'accèes
+
     private  $_num;
     private  $_nom;
     private  $_prenom;
@@ -145,10 +140,6 @@ class Client
     private  $_tel;
     private  $_email;
     private  $_dba;
-
-    public function __construct()
-    {
-    }
 
     public function getNum()
     {
@@ -482,20 +473,6 @@ class Commande
         return 0;
     }
 
-    public function update()
-    {
-        $_dba = new Dbaccess(); //instanciation
-        $_dba->query("update produit set reference = '" . $this->_reference . "',
-                                                    libelle = '" . $this->_libele . "',
-                                                    quantite_stock = "  . $this->_quantiteStock . ",
-                                                    prix_achat = "  . $this->_prixAchat . ",
-                                                    prix_unitaire = "  . $this->_prixUnitaire . ",
-                                                    prix_vente = "  . $this->_prixVente . "
-                                                    where reference = '"  . $this->_reference . "'");
-        $_dba->execute();
-        return 0;
-    }
-
     public function getAll()
     {
         $_dba = new Dbaccess(); //instanciation
@@ -509,14 +486,6 @@ class Commande
         $_dba = new Dbaccess();
         $_dba->query("Select * from commande where num='" . $this->_num . "'");
         return $_dba->single();
-    }
-
-
-    public function count()
-    {
-        $_dba = new Dbaccess(); //instanciation
-        $_dba->query("Select count(*) as nbr from client");
-        return $_dba->rowCount();
     }
 };
 
@@ -572,27 +541,14 @@ class Approvisionnement
         return 0;
     }
 
-    public function delete()
+    public function supprimer()
     {
         $_dba = new Dbaccess();
-        $_dba->query("delete from client where id='" . $this->_id . "'");
+        $_dba->query("delete from approvisionnement where num='" . $this->_num . "'");
         $_dba->execute();
         return 0;
     }
 
-    public function update()
-    {
-        $_dba = new Dbaccess(); //instanciation
-        $_dba->query("update produit set reference = '" . $this->_reference . "',
-                                                    libelle = '" . $this->_libele . "',
-                                                    quantite_stock = "  . $this->_quantiteStock . ",
-                                                    prix_achat = "  . $this->_prixAchat . ",
-                                                    prix_unitaire = "  . $this->_prixUnitaire . ",
-                                                    prix_vente = "  . $this->_prixVente . "
-                                                    where reference = '"  . $this->_reference . "'");
-        $_dba->execute();
-        return 0;
-    }
 
     public function getAll()
     {
@@ -602,131 +558,14 @@ class Approvisionnement
         return $_dba->resultSet();
     }
 
-    public function getOne()
-    {
-        $_dba = new Dbaccess(); //instanciation
-        $_dba->query("Select * from client where id='" . $this->_id . "'");
-        return $_dba->single();
-    }
-
-
-    public function count()
-    {
-        $_dba = new Dbaccess(); //instanciation
-        $_dba->query("Select count(*) as nbr from client");
-        return $_dba->rowCount();
-    }
-};
-
-
-class OrderProduct
-{
-
-    private  $_reference;
-    private  $_num;
-    private  $_quantity;
-
-    private  $_dba;
-
-    public function __construct()
-    {
-    }
-
-    public function getNum()
-    {
-        return $this->_num;
-    }
-
-    public function setNum($num)
-    {
-        $this->_num = $num;
-    }
-
-    public function getReference()
-    {
-        return $this->_reference;
-    }
-
-    public function setReference($reference)
-    {
-        $this->_reference = $reference;
-    }
-
-
-    public function getDateO()
-    {
-        return $this->_dateO;
-    }
-
-    public function setDateO($dateO)
-    {
-        $this->_dateO = $dateO;
-    }
-
-    public function getIdClient()
-    {
-        return $this->_idClient;
-    }
-
-    public function setIdCient($idClient)
-    {
-        $this->_idClient = $idClient;
-    }
-
-    public function save()
-    {
-        $_dba = new Dbaccess(); //instanciation
-        $_dba->query("insert into order-product values('" . $this->_reference . "',
-                                                '" . $this->_num . "',
-                                                '"  . $this->_quantity . "')");
-        $_dba->execute();
-        return 0;
-    }
-
-    public function delete()
+    public function trouverApprovisionnement()
     {
         $_dba = new Dbaccess();
-        $_dba->query("delete from client where id='" . $this->_id . "'");
-        $_dba->execute();
-        return 0;
-    }
-
-    public function update()
-    {
-        $_dba = new Dbaccess(); //instanciation
-        $_dba->query("update produit set reference = '" . $this->_reference . "',
-                                                    libelle = '" . $this->_libele . "',
-                                                    quantite_stock = "  . $this->_quantiteStock . ",
-                                                    prix_achat = "  . $this->_prixAchat . ",
-                                                    prix_unitaire = "  . $this->_prixUnitaire . ",
-                                                    prix_vente = "  . $this->_prixVente . "
-                                                    where reference = '"  . $this->_reference . "'");
-        $_dba->execute();
-        return 0;
-    }
-
-    public function getAll()
-    {
-        $_dba = new Dbaccess(); //instanciation
-        $_dba->query("Select * from order-product where num='" . $this->_num . "'");
-        return $_dba->resultSet();
-    }
-
-    public function getOne()
-    {
-        $_dba = new Dbaccess(); //instanciation
-        $_dba->query("Select * from client where id='" . $this->_id . "'");
+        $_dba->query("Select * from approvisionnement where num='" . $this->_num . "'");
         return $_dba->single();
     }
-
-
-    public function count()
-    {
-        $_dba = new Dbaccess(); //instanciation
-        $_dba->query("Select count(*) as nbr from client");
-        return $_dba->rowCount();
-    }
 };
+
 
 class Categorie
 {
@@ -830,10 +669,10 @@ class CommandeProduit
         return 0;
     }
 
-    public function delete()
+    public function supprimer()
     {
         $_dba = new Dbaccess();
-        $_dba->query("delete from client where id='" . $this->_id . "'");
+        $_dba->query("delete from commande_produit where ref='" . $this->_ref . "' and num='" . $this->_num . "'");
         $_dba->execute();
         return 0;
     }
@@ -874,5 +713,75 @@ class CommandeProduit
         $_dba = new Dbaccess(); //instanciation
         $_dba->query("Select count(*) as nbr from client");
         return $_dba->rowCount();
+    }
+};
+
+class ApprovisionnementProduit
+{
+    private  $_num;
+    private  $_ref;
+    private  $_quantite;
+
+    private  $_dba;
+
+    public function __construct()
+    {
+    }
+
+    public function getNum()
+    {
+        return $this->_num;
+    }
+
+    public function setNum($num)
+    {
+        $this->_num = $num;
+    }
+
+    public function getRef()
+    {
+        return $this->_ref;
+    }
+
+    public function setRef($ref)
+    {
+        $this->_ref = $ref;
+    }
+
+    public function getQuantite()
+    {
+        return $this->_quantite;
+    }
+
+    public function setQuantite($quantite)
+    {
+        $this->_quantite = $quantite;
+    }
+
+    public function enregistrer()
+    {
+        $_dba = new Dbaccess();
+        $_dba->query("insert into approvisionnement_produit values( '"  . $this->_num . "',
+                                                            '"  . $this->_ref . "',
+                                                            '"  . $this->_quantite . "')");
+        $_dba->execute();
+        return 0;
+    }
+
+    public function supprimer()
+    {
+        $_dba = new Dbaccess();
+        $_dba->query("delete from approvisionnement_produit where ref='" . $this->_ref . "' and num='" . $this->_num . "'");
+        $_dba->execute();
+        return 0;
+    }
+
+    public function getAll()
+    {
+        $_dba = new Dbaccess();
+        $_dba->query("Select * from approvisionnement_produit cp
+                    inner join approvisionnement a on cp.num=a.num
+                    inner join produit p on p.reference=cp.ref");
+        return $_dba->resultSet();
     }
 };

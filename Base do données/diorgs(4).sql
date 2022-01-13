@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3308
--- Généré le :  mar. 11 jan. 2022 à 22:01
+-- Généré le :  jeu. 13 jan. 2022 à 20:33
 -- Version du serveur :  8.0.18
 -- Version de PHP :  7.3.12
 
@@ -40,8 +40,33 @@ CREATE TABLE IF NOT EXISTS `approvisionnement` (
 --
 
 INSERT INTO `approvisionnement` (`num`, `date_app`, `id_fournisseur`) VALUES
-(7836, '2022-01-10', 345),
-(7830, '2022-01-10', 345);
+(1, '2022-01-12', 1),
+(2, '2022-01-12', 2),
+(3, '2022-01-12', 4),
+(4, '2022-01-12', 2),
+(5, '2022-01-12', 3),
+(55, '2021-12-27', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `approvisionnement_produit`
+--
+
+DROP TABLE IF EXISTS `approvisionnement_produit`;
+CREATE TABLE IF NOT EXISTS `approvisionnement_produit` (
+  `num` int(11) NOT NULL,
+  `ref` int(11) NOT NULL,
+  `quantite` int(11) NOT NULL,
+  PRIMARY KEY (`ref`,`num`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `approvisionnement_produit`
+--
+
+INSERT INTO `approvisionnement_produit` (`num`, `ref`, `quantite`) VALUES
+(1, 2, 10);
 
 -- --------------------------------------------------------
 
@@ -54,7 +79,7 @@ CREATE TABLE IF NOT EXISTS `categorie` (
   `num` int(11) NOT NULL AUTO_INCREMENT,
   `categorie` varchar(60) NOT NULL,
   PRIMARY KEY (`num`)
-) ENGINE=MyISAM AUTO_INCREMENT=1009 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=1014 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `categorie`
@@ -63,7 +88,8 @@ CREATE TABLE IF NOT EXISTS `categorie` (
 INSERT INTO `categorie` (`num`, `categorie`) VALUES
 (1008, 'Parfum2'),
 (1006, 'Eau de toillete'),
-(1005, 'Parfum');
+(1005, 'Parfum'),
+(1012, 'Parfum3');
 
 -- --------------------------------------------------------
 
@@ -78,7 +104,8 @@ CREATE TABLE IF NOT EXISTS `client` (
   `prenom` varchar(20) NOT NULL,
   `adresse` varchar(100) NOT NULL,
   `tel` varchar(16) NOT NULL,
-  `email` varchar(40) NOT NULL
+  `email` varchar(40) NOT NULL,
+  PRIMARY KEY (`num`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -86,7 +113,10 @@ CREATE TABLE IF NOT EXISTS `client` (
 --
 
 INSERT INTO `client` (`num`, `nom`, `prenom`, `adresse`, `tel`, `email`) VALUES
-(1, 'kamali', 'ilham', 'widyan aljanna safi', '0678453399', 'sdfsd@gmail.fr');
+(1, 'NAHID', 'ABDELLAH', 'SAFI', '0745672200', 'nahid@gmail.com'),
+(2, 'SAADI', 'FATIMA', 'CASA', '0647349090', 'saadi@gmail.com'),
+(3, 'MAHDAOUI', 'AYOUB', 'AGADIR', '0700187923', 'mahdaoui@gmail.com'),
+(4, 'TAWJI', 'IKRAM', 'CASA', '0645454567', 'tawji@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -108,8 +138,11 @@ CREATE TABLE IF NOT EXISTS `commande` (
 --
 
 INSERT INTO `commande` (`num`, `adresse_livraison`, `date_commande`, `id_client`) VALUES
-(2, 'JGHKJ', '2022-01-16', 1),
-(534, 'HJHV', '2022-01-11', 1);
+(1, 'SAFI', '2022-01-12', 1),
+(2, 'AGADIR', '2022-01-12', 3),
+(3, 'FES', '2022-01-12', 3),
+(4, 'TANGER', '2022-01-12', 4),
+(10, 'ELJADIDA', '2022-01-06', 3);
 
 -- --------------------------------------------------------
 
@@ -130,9 +163,7 @@ CREATE TABLE IF NOT EXISTS `commande_produit` (
 --
 
 INSERT INTO `commande_produit` (`num`, `ref`, `quantite`) VALUES
-(2, 44, 6),
-(2, 345, 15),
-(534, 44, 2);
+(1, 3, 11);
 
 -- --------------------------------------------------------
 
@@ -156,8 +187,10 @@ CREATE TABLE IF NOT EXISTS `fournisseur` (
 --
 
 INSERT INTO `fournisseur` (`num`, `nom`, `adresse`, `specialite`, `tel`, `email`) VALUES
-(345, 'dfsd', 'sdf', 'sfgsd', '453', 'df'),
-(34534, 'DFQSD', 'DSFSD', 'FDSFsd', '234334', 'ssdsd');
+(1, 'DAHBI', 'SAFI', 'PARFUM', '0660606034', 'dahbi@gmail.com'),
+(2, 'SAMAR', 'AGADIR', 'PARFUM', '0745637788', 'samar@gmail.com'),
+(3, 'LARBI', 'TETOUAN', 'PARFUM', '0623459866', 'larbi@gmail.com'),
+(4, 'TAJ', 'SAFI', 'PARFUM', '0645452378', 'taj@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -172,7 +205,8 @@ CREATE TABLE IF NOT EXISTS `produit` (
   `quantite_stock` int(11) NOT NULL,
   `prix_achat` float NOT NULL,
   `prix_vente` float NOT NULL,
-  `categorie` int(50) NOT NULL
+  `categorie` int(50) NOT NULL,
+  PRIMARY KEY (`reference`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -180,10 +214,32 @@ CREATE TABLE IF NOT EXISTS `produit` (
 --
 
 INSERT INTO `produit` (`reference`, `description`, `quantite_stock`, `prix_achat`, `prix_vente`, `categorie`) VALUES
-('785688798', 'KJG', 1, 1, 1, 0),
-('1', 'dqsf fsdf', 1, 1, 1, 0),
-('99', 'UYIU', 1, 1, 1, 1001),
-('44', 'ljkgh', 1, 1, 1, 1005);
+('1', 'Parfum1', 21, 37, 44, 1005),
+('2', 'Parfum2', 10, 44, 63, 1008),
+('3', 'Parfum3', 22, 100, 140, 1008),
+('4', 'Parfum4', 9, 74, 80, 1006),
+('5', 'Parfum5', 130, 300, 500, 1006),
+('6', 'Produit1', 12, 10, 20, 1005);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `user`
+--
+
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE IF NOT EXISTS `user` (
+  `login` varchar(30) NOT NULL,
+  `pwd` varchar(30) NOT NULL,
+  PRIMARY KEY (`login`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `user`
+--
+
+INSERT INTO `user` (`login`, `pwd`) VALUES
+('aya', 'aya');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
